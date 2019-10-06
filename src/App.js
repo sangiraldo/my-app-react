@@ -54,14 +54,14 @@ class App extends React.Component {
     let response;
     if (usuario.id === "") {
       response =
-        await axios.post("http://localhost:3001/usuarios",
+        await axios.post("https://bootcamp-nodeco.santirm8.now.sh/usuarios",
           JSON.stringify(usuario),
           { headers: {'Content-Type': 'application/json'}}
         );
         this.setState({ usuarios: response.data });
     } else {
       response =
-        await axios.put("http://localhost:3001/usuarios/" + usuario.id,
+        await axios.put("https://bootcamp-nodeco.santirm8.now.sh/usuarios/" + usuario.id,
           JSON.stringify(usuario),
           { headers: {'Content-Type': 'application/json'}}
         );
@@ -72,7 +72,7 @@ class App extends React.Component {
 
   async getDataAxios(){
     const response =
-      await axios.get("http://localhost:3001/usuarios",
+      await axios.get("https://bootcamp-nodeco.santirm8.now.sh/usuarios",
         { headers: {'Content-Type': 'application/json'}}
       )
     this.setState({ usuarios: response.data });
