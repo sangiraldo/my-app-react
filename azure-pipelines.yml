@@ -21,7 +21,7 @@ steps:
   inputs:
     targetType: "inline"
     script: |
-      curl -X POST -d {} "https://webhooks.amplify.us-east-1.amazonaws.com/prod/webhooks?id=00e28996-5b1a-4da1-af96-be097a878401&token=yqPOMujUJ2WfOzfNEEcyKcQuS0hkYgWseHhxnRiYk&operation=startbuild" -H "Content-Type:application/json"
+      curl -X POST -d {} "https://webhooks.amplify.us-east-1.amazonaws.com/prod/webhooks?id=2ebe044e-b6b7-49dd-9bcd-02cf18df035b&token=HRr0g5hn4iAAqkMebexJKqKZzOG79JI4nTUgOcehzUA&operation=startbuild" -H "Content-Type:application/json"
   displayName: 'deploy AWS Amplify'
 
 - task: AWSShellScript@1
