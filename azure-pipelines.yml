@@ -1,0 +1,43 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+trigger:
+- main
+- uat
+
+pool:
+  vmImage: ubuntu-latest
+
+steps:
+- script: echo testing...
+  displayName: 'test unit'
+
+- script: echo testing...
+  displayName: 'scan sonar'
+
+- script: |
+  curl -X POST -d {} "https://webhooks.amplify.us-east-1.amazonaws.com/prod/webhooks?id=00e28996-5b1a-4da1-af96-be097a878401&token=yqPOMujUJ2WfOzfNEEcyKcQuS0hkYgWseHhxnRiYk&operation=startbuild" -H "Content-Type:application/json"
+  displayName: 'deploy AWS Amplify'
+
+- task: AWSShellScript@1
+  inputs:
+    awsCredentials: 'AWS - Sangiraldome'
+    regionName: 'us-east-1'
+    scriptType: |
+      while [ true ]
+      do
+      status=$(aws amplify list-jobs --app-id d1zw2fj1pjzovh --branch uat | jq -r '.jobSummaries[0].status')
+      echo "Amplify status: " $status
+      echo "Deployment in progress..."
+      if [[ $status == "SUCCEED" ]]; then
+          echo "\n ---Successful deployment---"
+          break
+      elif [[ "$status" == "FAILED" ]]; then
+          echo "\n ---Deploy failed---"
+          exit 1
+      fi
+      sleep 20
+      done
+    inlineScript: '# You can write your script inline here'
