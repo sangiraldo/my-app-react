@@ -28,7 +28,8 @@ steps:
   inputs:
     awsCredentials: 'AWS - Sangiraldome'
     regionName: 'us-east-1'
-    scriptType: |
+    scriptType: "inline"
+    inlineScript: |
       while [ true ]
       do
       status=$(aws amplify list-jobs --app-id d1zw2fj1pjzovh --branch uat | jq -r '.jobSummaries[0].status')
@@ -43,4 +44,4 @@ steps:
       fi
       sleep 20
       done
-    inlineScript: '# You can write your script inline here'
+  displayName: Validate deployment Amplify
