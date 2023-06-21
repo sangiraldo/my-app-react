@@ -32,7 +32,7 @@ steps:
     inlineScript: |
       while [ true ]
       do
-      status=$(aws amplify list-jobs --app-id d1zw2fj1pjzovh --branch uat | jq -r '.jobSummaries[0].status')
+      status=$(aws amplify list-jobs --app-id dilmzste6d5ct --branch uat | jq -r '.jobSummaries[0].status')
       echo "Amplify status: " $status
       echo "Deployment in progress..."
       if [[ $status == "SUCCEED" ]]; then
