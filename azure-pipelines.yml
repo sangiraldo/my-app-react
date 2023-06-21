@@ -36,10 +36,10 @@ steps:
       echo "Amplify status: " $status
       echo "Deployment in progress..."
       if [[ $status == "SUCCEED" ]]; then
-          echo "\n ---Successful deployment---"
+          echo "---Successful deployment---"
           break
       elif [[ "$status" == "FAILED" ]]; then
-          echo "\n ---Deploy failed---"
+          echo "---Deploy failed---"
           exit 1
       fi
       sleep 20
